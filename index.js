@@ -9,6 +9,7 @@ const themeSelector = document.getElementById('themes');
 const codeContainer = document.getElementById('code-container');
 const fontSizeSlider = document.getElementById('font-size-slider');
 const fontSizeValue = document.getElementById('font-size-value');
+const displayedFilename = document.getElementById('displayed-filename');
 let selectedLanguage = localStorage.getItem('language') || 'javascript';
 let selectedTheme = localStorage.getItem('theme') || 'github-dark';
 let codeText = localStorage.getItem('code') || 'console.log("Hello World")';
@@ -30,6 +31,7 @@ updateCode();
 // Attach event listeners
 printBtn.addEventListener('click', () => {
     updateCode();
+    displayedFilename.textContent = documentNameInput.value || 'Code';
     let optGroup = themeSelector.options[themeSelector.selectedIndex].parentNode;
     const lineNumbers = document.querySelectorAll('.line-number');
     const root = document.documentElement;
@@ -56,6 +58,11 @@ codeTextArea.addEventListener('input', () => {
     codeText = codeTextArea.value;
     localStorage.setItem('code', codeText);
     code.innerHTML = escapeHtml(codeText);
+    displayedFilename.textContent = documentNameInput.value || 'Code';
+});
+
+documentNameInput.addEventListener('input', () => {
+    displayedFilename.textContent = documentNameInput.value || 'Code';
 });
 
 languageSelector.addEventListener('change', () => {
