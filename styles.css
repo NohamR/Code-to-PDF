@@ -110,7 +110,7 @@ pre {
 }
 
 #code {
-  font-size: 14px;
+  font-size: var(--dynamic-font-size, 14px);
   border: none;
   border-right: var(--border-thickness) solid #c9d1d9;
   font-family: 'Fira Code', monospace;
@@ -133,7 +133,7 @@ pre {
 
 .code-line {
   font-family: 'Fira Code', monospace;
-  font-size: 14px;
+  font-size: var(--dynamic-font-size, 14px);
   display: flex;
 }
 
@@ -212,9 +212,3 @@ p {
 textarea::-webkit-scrollbar-thumb {
   border-radius: 4px;
 }
-
-
-
-
-
-

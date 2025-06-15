@@ -7,6 +7,8 @@ const codeLines = document.getElementById('line-nums');
 const themeStylesheet = document.getElementById('theme-style');
 const themeSelector = document.getElementById('themes');
 const codeContainer = document.getElementById('code-container');
+const fontSizeSlider = document.getElementById('font-size-slider');
+const fontSizeValue = document.getElementById('font-size-value');
 let selectedLanguage = localStorage.getItem('language') || 'javascript';
 let selectedTheme = localStorage.getItem('theme') || 'github-dark';
 let codeText = localStorage.getItem('code') || 'console.log("Hello World")';
@@ -69,6 +71,12 @@ themeSelector.addEventListener('change', () => {
     localStorage.setItem('theme', selectedTheme);
 });
 
+fontSizeSlider.addEventListener('input', () => {
+    const fontSize = fontSizeSlider.value;
+    fontSizeValue.textContent = `${fontSize}px`;
+    document.documentElement.style.setProperty('--dynamic-font-size', `${fontSize}px`);
+});
+
 // Helper functions
 function escapeHtml(text) {
     return text
@@ -104,7 +112,3 @@ function updateCode() {
     codeContainer.innerHTML = formattedCode;
     hljs.highlightAll();
 }
-
-
-
-
